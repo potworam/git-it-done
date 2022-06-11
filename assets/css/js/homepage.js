@@ -13,8 +13,11 @@ var getUserRepos = function(user) {
 }else{
     alert("Error:GitHub user not found");
 }
-});
-
+})
+.catch(function(error) {
+    // Notice this `.catch()` getting chained onto the end of the `.then()` method
+    alert("Unable to connect to GitHub");
+  });
    
 };
 
@@ -39,6 +42,10 @@ var getUserRepos = function(user) {
     console.log(event);
   };
   var displayRepos = function(repos, searchTerm) {
+    if (repos.length === 0) {
+        repoContainerEl.textContent = "No repositories found.";
+        return;
+      }
     console.log(repos);
     console.log(searchTerm);
     // clear old content
